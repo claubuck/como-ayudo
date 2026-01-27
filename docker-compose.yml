@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: como-ayudo-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+    networks:
+      - como-ayudo-network
+    environment:
+      - DB_HOST=host.docker.internal
+      - DB_PORT=3306
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Si host.docker.internal no funciona en Linux, usa una de estas opciones:
+    # Opción 1: Usar network_mode host (descomenta la siguiente línea y comenta extra_hosts)
+    # network_mode: "host"
+    # Opción 2: Usar la IP de la interfaz docker0 (ejecuta: ip addr show docker0 | grep inet)
+    # y cambia DB_HOST a esa IP (ej: 172.17.0.1)
+
+  nginx:
+    image: nginx:alpine
+    container_name: como-ayudo-nginx
+    restart: unless-stopped
+    ports:
+      - "8024:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - como-ayudo-network
+    depends_on:
+      - app
+
+networks:
+  como-ayudo-network:
+    driver: bridge

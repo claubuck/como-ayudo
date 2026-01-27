@@ -16,7 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        // Trust all proxies to detect HTTPS correctly
+        // Use empty array to trust all proxies
+        $middleware->trustProxies(at: [], headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR | \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST | \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT | \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
+        // Trust all hosts - specify allowed hosts or remove to trust all
+        // $middleware->trustHosts(at: []);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
