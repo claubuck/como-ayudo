@@ -14,7 +14,7 @@ const props = defineProps({
 });
 
 const showVolunteerForm = ref(false);
-const activeTab = ref('overview');
+const activeTab = ref('zones');
 const nameInputRef = ref(null);
 
 const volunteerForm = useForm({
