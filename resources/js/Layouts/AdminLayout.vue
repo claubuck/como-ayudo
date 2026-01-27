@@ -1,9 +1,14 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const showingNavigationDropdown = ref(false);
 const showingMobileMenu = ref(false);
+const showingUserMenu = ref(false);
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>
@@ -128,6 +133,54 @@ const showingMobileMenu = ref(false);
                             </svg>
                             Ver Sitio
                         </Link>
+                        
+                        <!-- User Menu -->
+                        <div class="relative">
+                            <button
+                                @click="showingUserMenu = !showingUserMenu"
+                                class="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                </div>
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div
+                                v-show="showingUserMenu"
+                                @click.away="showingUserMenu = false"
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
+                            >
+                                <Link
+                                    :href="route('profile.edit')"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                                    @click="showingUserMenu = false"
+                                >
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        Perfil
+                                    </div>
+                                </Link>
+                                <button
+                                    @click="logout"
+                                    class="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                                >
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                        </svg>
+                                        Cerrar Sesión
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Mobile menu button -->
@@ -222,6 +275,20 @@ const showingMobileMenu = ref(false);
                     >
                         Ver Sitio Público
                     </Link>
+                    <div class="border-t border-gray-200 mt-2 pt-2">
+                        <Link
+                            :href="route('profile.edit')"
+                            class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300"
+                        >
+                            Perfil
+                        </Link>
+                        <button
+                            @click="logout"
+                            class="w-full text-left block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-red-600 hover:bg-red-50 hover:border-red-300"
+                        >
+                            Cerrar Sesión
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
