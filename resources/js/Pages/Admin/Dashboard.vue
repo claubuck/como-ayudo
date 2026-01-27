@@ -23,6 +23,48 @@ defineProps({
                 </p>
             </div>
 
+            <!-- Visits Stats -->
+            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg p-6 mb-8 text-white">
+                <h2 class="text-xl font-bold mb-4">Estadísticas de Visitas</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <p class="text-sm opacity-90 mb-1">Total Visitas</p>
+                        <p class="text-2xl font-bold">{{ stats.visits?.total || 0 }}</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <p class="text-sm opacity-90 mb-1">Hoy</p>
+                        <p class="text-2xl font-bold">{{ stats.visits?.today || 0 }}</p>
+                        <p class="text-xs opacity-75 mt-1">
+                            {{ stats.visits?.uniqueToday || 0 }} únicas
+                        </p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <p class="text-sm opacity-90 mb-1">Esta Semana</p>
+                        <p class="text-2xl font-bold">{{ stats.visits?.thisWeek || 0 }}</p>
+                        <p class="text-xs opacity-75 mt-1">
+                            {{ stats.visits?.uniqueThisWeek || 0 }} únicas
+                        </p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <p class="text-sm opacity-90 mb-1">Este Mes</p>
+                        <p class="text-2xl font-bold">{{ stats.visits?.thisMonth || 0 }}</p>
+                        <p class="text-xs opacity-75 mt-1">
+                            {{ stats.visits?.uniqueThisMonth || 0 }} únicas
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                        <p class="opacity-90">Ayer</p>
+                        <p class="text-lg font-semibold">{{ stats.visits?.yesterday || 0 }}</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                        <p class="opacity-90">Mes Anterior</p>
+                        <p class="text-lg font-semibold">{{ stats.visits?.lastMonth || 0 }}</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- Zonas -->

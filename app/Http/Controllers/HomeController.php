@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Coordinator;
 use App\Models\Donation;
 use App\Models\DonationPoint;
+use App\Models\Visit;
 use App\Models\Zone;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,6 +15,16 @@ class HomeController extends Controller
 {
     public function index(): Response
     {
+        // Registrar visita
+        $visit = new Visit([
+            'id' => (string) Str::uuid(),
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'referer' => request()->header('referer'),
+            'visited_at' => now()->toDateString(),
+        ]);
+        $visit->save();
+
         return Inertia::render('Home', [
             'zones' => Zone::where('active', true)
                 ->with(['donationPoints' => function ($query) {
