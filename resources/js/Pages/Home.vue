@@ -125,7 +125,53 @@ const totalDonationPoints = computed(() => {
 </script>
 
 <template>
-    <Head title="Centro de Ayuda - Inundaciones" />
+    <Head>
+        <title>Centro de Ayuda - Información Centralizada para Emergencias</title>
+        <meta name="description" content="Plataforma sin fines de lucro que centraliza información sobre zonas afectadas, donaciones, puntos de recepción y cómo ayudar durante emergencias. Únete como voluntario o dona para ayudar a quienes más lo necesitan." />
+        <meta name="keywords" content="ayuda humanitaria, emergencias, donaciones, voluntariado, zonas afectadas, centro de ayuda, información emergencia, cómo ayudar" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Centro de Ayuda" />
+        
+        <!-- Open Graph -->
+        <meta property="og:title" content="Centro de Ayuda - Información Centralizada para Emergencias" />
+        <meta property="og:description" content="Plataforma sin fines de lucro que centraliza información sobre zonas afectadas, donaciones, puntos de recepción y cómo ayudar durante emergencias." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.comoayudo.com" />
+        <meta property="og:site_name" content="Centro de Ayuda" />
+        <meta property="og:locale" content="es_ES" />
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Centro de Ayuda - Información Centralizada para Emergencias" />
+        <meta name="twitter:description" content="Plataforma sin fines de lucro que centraliza información sobre zonas afectadas, donaciones, puntos de recepción y cómo ayudar durante emergencias." />
+        
+        <!-- Canonical -->
+        <link rel="canonical" href="https://www.comoayudo.com" />
+        
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "NGO",
+            "name": "Centro de Ayuda",
+            "description": "Plataforma sin fines de lucro que centraliza información sobre zonas afectadas, donaciones, puntos de recepción y cómo ayudar durante emergencias",
+            "url": "https://www.comoayudo.com",
+            "logo": "https://www.comoayudo.com/favicon.svg",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Desarrollador",
+                "email": "desarrollador@comoayudo.com"
+            },
+            "sameAs": [],
+            "nonprofitStatus": "NonprofitType",
+            "foundingDate": "2026",
+            "areaServed": {
+                "@type": "Country",
+                "name": "España"
+            }
+        }
+        </script>
+    </Head>
 
     <div class="min-h-screen bg-slate-50">
         <!-- Header -->
@@ -668,10 +714,72 @@ const totalDonationPoints = computed(() => {
         </main>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-slate-200 mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div class="text-center text-sm text-slate-600">
-                    <p>Centro de Ayuda - Información centralizada para emergencias</p>
+        <footer class="bg-slate-900 text-slate-300 mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <!-- About Section -->
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Sobre la Plataforma</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            Como Ayudo es una plataforma sin fines de lucro creada para centralizar información durante emergencias y facilitar la coordinación de ayuda humanitaria.
+                        </p>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Contacto</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="text-slate-400">
+                                Para más información sobre esta plataforma o para reportar problemas técnicos, puedes contactar al desarrollador.
+                            </p>
+                            <div class="pt-2">
+                                <a 
+                                    href="mailto:camposclaudio@live.com" 
+                                    class="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center"
+                                >
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    camposclaudio@live.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legal Section -->
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-4">Información Legal</h3>
+                        <div class="space-y-2 text-sm text-slate-400">
+                            <p>
+                                <span class="inline-flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Plataforma sin fines de lucro
+                                </span>
+                            </p>
+                            <p class="pt-2">
+                                Esta plataforma es de uso gratuito y está diseñada exclusivamente para facilitar la ayuda humanitaria durante emergencias.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="border-t border-slate-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div class="text-sm text-slate-400">
+                            <p>&copy; {{ new Date().getFullYear() }} Centro de Ayuda. Todos los derechos reservados.</p>
+                            <p class="mt-1 text-xs">Plataforma desarrollada con fines humanitarios.</p>
+                        </div>
+                        <div class="flex items-center space-x-6 text-sm">
+                            <span class="text-slate-500">Hecho con</span>
+                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-slate-500">para ayudar</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
