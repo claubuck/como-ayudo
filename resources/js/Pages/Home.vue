@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, computed, nextTick } from 'vue';
+import Modal from '@/Components/Modal.vue';
 
 const props = defineProps({
     zones: {
@@ -14,6 +15,7 @@ const props = defineProps({
 });
 
 const showVolunteerForm = ref(false);
+const showDonateModal = ref(false);
 const activeTab = ref('zones');
 const nameInputRef = ref(null);
 
@@ -814,6 +816,16 @@ const copyToClipboard = async () => {
                                     camposclaudio@live.com
                                 </a>
                             </div>
+                            <p class="pt-3 text-slate-400">
+                                Si querés contribuir con una donación para el mantenimiento de esta página,
+                                <button
+                                    type="button"
+                                    @click="showDonateModal = true"
+                                    class="text-blue-400 hover:text-blue-300 underline transition-colors"
+                                >
+                                    hacé clic acá
+                                </button>.
+                            </p>
                         </div>
                     </div>
 
@@ -854,5 +866,57 @@ const copyToClipboard = async () => {
                 </div>
             </div>
         </footer>
+
+        <!-- Donate Modal -->
+        <Modal :show="showDonateModal" @close="showDonateModal = false" maxWidth="md">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900">Donar para el mantenimiento</h3>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    Para mantener esta plataforma en línea y que siga disponible para quienes necesitan información o quieren ayudar, tenemos que cubrir costos de servidor, dominio y mantenimiento técnico.
+                </p>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    Tu contribución, por pequeña que sea, nos ayuda a sostener el sitio y a que la información siga llegando a quien la necesite. ¡Gracias por considerar colaborar 💙
+                </p>
+                <p class="text-sm font-medium text-slate-700 mb-3">Podés colaborar de estas formas:</p>
+                <div class="space-y-5">
+                    <a
+                        href="https://link.mercadopago.com.ar/comoayudo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center px-5 py-2.5 bg-[#009ee3] hover:bg-[#0088cc] text-white text-sm font-medium rounded-lg transition-colors"
+                    >
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                        </svg>
+                        Donar con Mercado Pago
+                    </a>
+                    <div class="border-t border-slate-200 pt-4">
+                        <p class="text-sm font-medium text-slate-700 mb-2">Transferencia bancaria</p>
+                        <div class="text-sm text-slate-600 space-y-1">
+                            <p><span class="text-slate-500">Titular:</span> Claudio Dario Campos</p>
+                            <p><span class="text-slate-500">CUIT/CUIL:</span> 27-33704092-1</p>
+                            <p><span class="text-slate-500">CVU:</span> 0000003100074013575886</p>
+                            <p><span class="text-slate-500">Alias:</span> claudiodcampos.mp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button
+                        type="button"
+                        @click="showDonateModal = false"
+                        class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors"
+                    >
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </Modal>
     </div>
 </template>
