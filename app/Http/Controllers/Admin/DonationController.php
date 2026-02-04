@@ -32,12 +32,15 @@ class DonationController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'quantity_needed' => ['required', 'integer', 'min:0'],
-            'quantity_received' => ['integer', 'min:0'],
+            'quantity_received' => ['nullable', 'integer', 'min:0'],
             'unit' => ['required', 'string', 'max:50'],
             'priority' => ['required', 'in:high,medium,low'],
             'active' => ['boolean'],
-            'order' => ['integer', 'min:0'],
+            'order' => ['nullable', 'integer', 'min:0'],
         ]);
+
+        $validated['quantity_received'] = $validated['quantity_received'] ?? 0;
+        $validated['order'] = $validated['order'] ?? 0;
 
         Donation::create($validated);
 
@@ -60,11 +63,11 @@ class DonationController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'quantity_needed' => ['required', 'integer', 'min:0'],
-            'quantity_received' => ['integer', 'min:0'],
+            'quantity_received' => ['nullable', 'integer', 'min:0'],
             'unit' => ['required', 'string', 'max:50'],
             'priority' => ['required', 'in:high,medium,low'],
             'active' => ['boolean'],
-            'order' => ['integer', 'min:0'],
+            'order' => ['nullable', 'integer', 'min:0'],
         ]);
 
         $donation->update($validated);
