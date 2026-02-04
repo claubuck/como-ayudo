@@ -23,6 +23,11 @@ class Donation extends Model
         'active' => 'boolean',
     ];
 
+    protected $appends = [
+        'progress_percentage',
+        'is_fulfilled',
+    ];
+
     public function getProgressPercentageAttribute(): int
     {
         if ($this->quantity_needed == 0) {
